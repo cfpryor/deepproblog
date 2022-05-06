@@ -64,7 +64,7 @@ class MNIST(Dataset):
         self.data = datasets[dataset]
 
 
-def addition(n: int, dataset: str, seed=None):
+def addition(n: int, dataset: str, indices=None, seed=None):
     """Returns a dataset for binary addition"""
     return MNISTOperator(
         dataset_name=dataset,
@@ -73,6 +73,7 @@ def addition(n: int, dataset: str, seed=None):
         size=n,
         arity=2,
         seed=seed,
+        indices=indices,
     )
 
 
@@ -92,6 +93,7 @@ class MNISTOperator(Dataset, TorchDataset):
         size=1,
         arity=2,
         seed=None,
+        indices=None,
     ):
         """Generic dataset for operator(img, img) style datasets.
 
@@ -112,7 +114,10 @@ class MNISTOperator(Dataset, TorchDataset):
         self.size = size
         self.arity = arity
         self.seed = seed
-        mnist_indices = list(range(len(self.dataset)))
+        if indices is None:
+            mnist_indices = list(range(len(self.dataset)))
+        else:
+            mnist_indices = indices
         if seed is not None:
             rng = random.Random(seed)
             rng.shuffle(mnist_indices)
