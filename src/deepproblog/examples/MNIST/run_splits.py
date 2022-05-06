@@ -57,6 +57,7 @@ def main():
                 train_size_result_path = os.path.join(fold_result_path,
                                                       train_size_dir)
                 os.makedirs(train_size_result_path, exist_ok=True)
+                train_size = int(train_size_path[-5:])
 
                 for overlap_dir in sorted(os.listdir(train_size_path)):
                     overlap_path = os.path.join(train_size_path, overlap_dir)
@@ -87,7 +88,7 @@ def main():
                                            num_epochs=10,
                                            batch_size=2,
                                            learning_rate=1e-3,
-                                           log_iterations=100,
+                                           log_iterations=train_size // 5,
                                            train_indices=train_indices,
                                            test_indices=test_indices,
                                            train_set_name="train",
@@ -101,7 +102,6 @@ def main():
 
                     os.rename(saved_log_path, log_path)
                     write_json(config, config_path)
-                    return 0
 
 
 if __name__ == '__main__':
