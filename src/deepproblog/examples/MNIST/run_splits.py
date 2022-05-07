@@ -83,9 +83,13 @@ def main():
                     test_indices = load_data(imagesum_eval_path)
 
                     time_start = time.time()
+                    if train_size >= 1000:
+                        num_epochs = 5
+                    else:
+                        num_epochs = 15
                     config = addition.main(num_digits=num_digits,
                                            seed=fold,
-                                           num_epochs=10,
+                                           num_epochs=num_epochs,
                                            batch_size=2,
                                            learning_rate=1e-3,
                                            log_iterations=train_size // 5,
