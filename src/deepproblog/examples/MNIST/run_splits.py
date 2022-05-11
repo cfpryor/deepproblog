@@ -1,6 +1,7 @@
 # Lint as: python3
 import json
 import os
+import shutil
 import time
 
 import addition
@@ -127,7 +128,7 @@ def main():
                         saved_log_path = os.path.join(LOG_DIR,
                                                       config["name"] + ".log")
 
-                        os.rename(saved_log_path, log_path)
+                        shutil.move(saved_log_path, log_path)
                         write_json(config, config_path)
 
 
