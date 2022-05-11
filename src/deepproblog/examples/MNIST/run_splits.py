@@ -18,8 +18,9 @@ IMAGESUM_FILENAME = 'imagesum_truth.txt'
 CONFIG_FILENAMES = {EVAL: 'config.json', TEST: 'test_config.json'}
 LOG_FILENAMES = {EVAL: 'out.log', TEST: 'test_out.log'}
 
-EPOCHS = {1: {20: 30, 37: 30, 75: 40, 150: 40, 300: 50, 3000: 6, 25000: 2},
+EPOCHS = {1: {20: 30, 37: 30, 75: 40, 150: 40, 300: 20, 3000: 6, 25000: 2},
           2: {10: 30, 18: 30, 37: 30, 75: 40, 150: 40, 1500: 8, 12500: 3}}
+METHOD = "exact"
 
 
 def write_json(data, path):
@@ -93,7 +94,8 @@ def main():
                         time_start = time.time()
 
                         if test_val_key == EVAL:
-                            config = addition.main(num_digits=num_digits,
+                            config = addition.main(method=METHOD,
+                                                   num_digits=num_digits,
                                                    seed=fold,
                                                    num_epochs=EPOCHS[num_digits][train_size],
                                                    batch_size=2,
@@ -104,16 +106,18 @@ def main():
                                                    train_set_name="train",
                                                    test_set_name="train")
                         if test_val_key == TEST:
-                            config = addition.main(num_digits=num_digits,
-                                                   seed=fold,
-                                                   num_epochs=EPOCHS[num_digits][train_size],
-                                                   batch_size=2,
-                                                   learning_rate=1e-3,
-                                                   log_iterations=train_size // 5,
-                                                   train_indices=train_indices,
-                                                   test_indices=test_indices,
-                                                   train_set_name="train",
-                                                   test_set_name="test")
+                            # config = addition.main(method=METHOD,
+                            #                        num_digits=num_digits,
+                            #                        seed=fold,
+                            #                        num_epochs=EPOCHS[num_digits][train_size],
+                            #                        batch_size=2,
+                            #                        learning_rate=1e-3,
+                            #                        log_iterations=train_size // 5,
+                            #                        train_indices=train_indices,
+                            #                        test_indices=test_indices,
+                            #                        train_set_name="train",
+                            #                        test_set_name="test")
+                            continue
 
                         time_end = time.time()
                         config["program_time_start"] = time_start
