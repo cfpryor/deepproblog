@@ -103,7 +103,7 @@ def main():
                                                    learning_rate=1e-3,
                                                    log_iterations=train_size // 5,
                                                    train_indices=train_indices,
-                                                   test_indices=val_indices[:10],
+                                                   test_indices=val_indices,
                                                    train_set_name="train",
                                                    test_set_name="train")
                         if test_val_key == TEST:
