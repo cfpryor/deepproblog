@@ -19,8 +19,8 @@ IMAGESUM_FILENAME = 'imagesum_truth.txt'
 CONFIG_FILENAMES = {EVAL: 'config.json', TEST: 'test_config.json'}
 LOG_FILENAMES = {EVAL: 'out.log', TEST: 'test_out.log'}
 
-EPOCHS = {1: {20: 30, 37: 30, 75: 40, 150: 40, 300: 20, 3000: 6, 25000: 2},
-          2: {10: 30, 18: 30, 37: 30, 75: 40, 150: 40, 1500: 8, 12500: 3}}
+EPOCHS = {1: {20: 30, 37: 30, 75: 40, 150: 40, 300: 20, 3000: 6, 25000: 10},
+          2: {10: 30, 18: 30, 37: 30, 75: 40, 150: 40, 1500: 8, 12500: 10}}
 METHOD = "exact"
 
 
@@ -57,6 +57,8 @@ def main():
             fold_result_path = os.path.join(experiment_result_path, fold_dir)
             os.makedirs(fold_result_path, exist_ok=True)
             fold = int(fold_path[-2:])
+            if num_digits == 1 or fold < 0:
+                continue
 
             for train_size_dir in sorted(os.listdir(fold_path)):
                 train_size_path = os.path.join(fold_path, train_size_dir)
@@ -64,6 +66,8 @@ def main():
                                                       train_size_dir)
                 os.makedirs(train_size_result_path, exist_ok=True)
                 train_size = int(train_size_path[-5:])
+                if train_size != 25000 or train_size != 12500:
+                    continue
 
                 for overlap_dir in sorted(os.listdir(train_size_path)):
                     overlap_path = os.path.join(train_size_path, overlap_dir)
