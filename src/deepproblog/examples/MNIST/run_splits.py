@@ -57,7 +57,7 @@ def main():
             fold_result_path = os.path.join(experiment_result_path, fold_dir)
             os.makedirs(fold_result_path, exist_ok=True)
             fold = int(fold_path[-2:])
-            if num_digits == 1 or fold < 0:
+            if fold != 2:
                 continue
 
             for train_size_dir in sorted(os.listdir(fold_path)):
@@ -66,8 +66,6 @@ def main():
                                                       train_size_dir)
                 os.makedirs(train_size_result_path, exist_ok=True)
                 train_size = int(train_size_path[-5:])
-                if train_size != 25000 or train_size != 12500:
-                    continue
 
                 for overlap_dir in sorted(os.listdir(train_size_path)):
                     overlap_path = os.path.join(train_size_path, overlap_dir)
