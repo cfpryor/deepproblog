@@ -39,6 +39,9 @@ def main():
     csv_results = [["Experiment", "Fold", "Train Size", "Overlap", "Test/Validation", "Accuracy"]]
     for experiment_dir in sorted(os.listdir(RESULTS_DIR)):
         experiment_result_path = os.path.join(RESULTS_DIR, experiment_dir)
+        if not os.path.isdir(experiment_result_path):
+            continue
+
         for fold_dir in sorted(os.listdir(experiment_result_path)):
             fold_result_path = os.path.join(experiment_result_path, fold_dir)
             for train_size_dir in sorted(os.listdir(fold_result_path)):
