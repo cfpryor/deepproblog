@@ -57,8 +57,6 @@ def main():
             fold_result_path = os.path.join(experiment_result_path, fold_dir)
             os.makedirs(fold_result_path, exist_ok=True)
             fold = int(fold_path[-2:])
-            if fold != 2:
-                continue
 
             for train_size_dir in sorted(os.listdir(fold_path)):
                 train_size_path = os.path.join(fold_path, train_size_dir)
