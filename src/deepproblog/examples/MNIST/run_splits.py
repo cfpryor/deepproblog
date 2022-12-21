@@ -19,8 +19,8 @@ IMAGESUM_FILENAME = 'imagesum_truth.txt'
 CONFIG_FILENAMES = {EVAL: 'config.json', TEST: 'test_config.json'}
 LOG_FILENAMES = {EVAL: 'out.log', TEST: 'test_out.log'}
 
-EPOCHS = {1: {20: 30, 37: 30, 75: 40, 150: 40, 300: 20, 3000: 6, 25000: 10},
-          2: {10: 30, 18: 30, 37: 30, 75: 40, 150: 40, 1500: 8, 12500: 10}}
+EPOCHS = {1: {20: 30, 30: 30, 37: 30, 40: 30, 75: 40, 150: 40, 300: 20, 3000: 6, 25000: 10},
+          2: {10: 30, 15: 30, 18: 30, 20: 30, 37: 30, 75: 40, 150: 40, 1500: 8, 12500: 10}}
 METHOD = "exact"
 
 
