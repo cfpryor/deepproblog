@@ -56,7 +56,7 @@ def main():
                 train_size_path = os.path.join(split_path, train_size_dir)
                 train_size_result_path = os.path.join(split_result_path, train_size_dir)
                 os.makedirs(train_size_result_path, exist_ok=True)
-                train_size = int(train_size_path[-5:])
+                train_size = int(train_size_path[-4:])
 
                 for overlap_dir in sorted(os.listdir(train_size_path)):
                     overlap_path = os.path.join(train_size_path, overlap_dir)
