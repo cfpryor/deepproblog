@@ -11,8 +11,8 @@ DATA_DIR = os.path.join(THIS_DIR, '..', '..', '..', '..', '..', 'psl_data')
 RESULTS_DIR = os.path.join(THIS_DIR, 'results')
 LOG_DIR = os.path.join(THIS_DIR, 'log')
 
-EPOCHS = {1: {20: 30, 30: 30, 37: 30, 40: 30, 75: 40, 150: 40, 300: 20, 3000: 6, 25000: 10},
-          2: {10: 30, 15: 30, 18: 30, 20: 30, 37: 30, 75: 40, 150: 40, 1500: 8, 12500: 10}}
+EPOCHS = {1: {40: 30, 60: 30, 80: 30},
+          2: {40: 30, 60: 30, 80: 30}}
 METHOD = "exact"
 
 
