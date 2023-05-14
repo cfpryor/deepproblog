@@ -21,14 +21,20 @@ def write_json(data, path):
         json.dump(data, json_file, indent=4)
 
 
-def load_data(path):
+def load_data(path, num_digits):
     indices = []
+    max_sum = 2 * (10 ** num_digits) - 1
 
+    line_count = 0
     with open(path, 'r') as file:
         for line in file:
-            parts = line.strip().split()[:-1]
-            for part in parts:
-                indices.append(int(part))
+            if line.strip() == "":
+                continue
+            if line_count % max_sum == 0:
+                parts = line.strip().split()[:-2]
+                for part in parts:
+                    indices.append(int(part))
+            line_count += 1
 
     return indices
 
@@ -74,8 +80,8 @@ def main():
                         print("Found existing config file, skipping run: %s" % (overlap_path,))
                         continue
 
-                    train_indices = load_data(imagesum_learn_path)
-                    val_indices = load_data(imagesum_eval_path)
+                    train_indices = load_data(imagesum_learn_path, num_digits)
+                    val_indices = load_data(imagesum_eval_path, num_digits)
 
                     time_start = time.time()
                     config = addition.main(method=METHOD,
