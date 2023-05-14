@@ -5,6 +5,7 @@ from pathlib import Path
 import torchvision
 import torchvision.transforms as transforms
 from torch.utils.data import Dataset as TorchDataset
+from torch.utils.data import ConcatDataset
 from typing import Callable, List, Iterable, Tuple
 
 
@@ -18,13 +19,16 @@ transform = transforms.Compose(
     [transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))]
 )
 
+train_dataset = torchvision.datasets.MNIST(
+    root=str(_DATA_ROOT), train=True, download=True, transform=transform
+)
+test_dataset = torchvision.datasets.MNIST(
+    root=str(_DATA_ROOT), train=False, download=True, transform=transform
+)
+
 datasets = {
-    "train": torchvision.datasets.MNIST(
-        root=str(_DATA_ROOT), train=True, download=True, transform=transform
-    ),
-    "test": torchvision.datasets.MNIST(
-        root=str(_DATA_ROOT), train=False, download=True, transform=transform
-    ),
+    "train": ConcatDataset([train_dataset, test_dataset]),
+    "test": ConcatDataset([train_dataset, test_dataset])
 }
 
 
