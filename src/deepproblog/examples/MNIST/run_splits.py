@@ -7,7 +7,7 @@ import time
 import addition
 
 THIS_DIR = os.path.join(os.path.dirname(os.path.realpath(__file__)))
-DATA_DIR = os.path.join(THIS_DIR, '..', '..', '..', '..', '..', 'psl_data', 'mnist-addition')
+DATA_DIR = os.path.join(THIS_DIR, '..', '..', '..', '..', '..', 'psl_data')
 RESULTS_DIR = os.path.join(THIS_DIR, 'results')
 LOG_DIR = os.path.join(THIS_DIR, 'log')
 
